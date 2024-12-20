@@ -1,20 +1,18 @@
-import typescript from '@rollup/plugin-typescript';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import { fileURLToPath } from 'url';
-import path from 'path';
-import replace from '@rollup/plugin-replace';
 import babel from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
+import typescript from '@rollup/plugin-typescript';
+import fs from 'fs';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const pages = ['home', 'about'];
+const PAGES = fs.readdirSync('client/roots').map((file) => file.replace('.tsx', ''));
 
 /**
  * @type {import('rollup').RollupOptions[]}
  */
-const configs = pages.map((page) => ({
+const configs = PAGES.map((page) => ({
 	watch: {
+		clearScreen: false,
 		chokidar: {
 			cwd: 'client/**',
 		},
