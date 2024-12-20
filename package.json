@@ -1,0 +1,33 @@
+{
+	"name": "books-recommendation",
+	"type": "module",
+	"scripts": {
+		"dev:server": "tsx watch server/index.ts",
+		"dev:client": ",",
+		"watch:client": "rollup -c -w",
+		"build:client": "rollup -c"
+	},
+	"dependencies": {
+		"@hono/node-server": "^1.13.7",
+		"hono": "^4.6.13",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"@babel/preset-react": "^7.26.3",
+		"@rollup/plugin-babel": "^6.0.4",
+		"@rollup/plugin-commonjs": "^28.0.2",
+		"@rollup/plugin-node-resolve": "^15.3.0",
+		"@rollup/plugin-replace": "^6.0.2",
+		"@rollup/plugin-typescript": "^12.1.1",
+		"@types/node": "^20.17.10",
+		"@types/react": "^19.0.1",
+		"@types/react-dom": "^19.0.2",
+		"babel-preset-react": "^6.24.1",
+		"esbuild": "^0.24.0",
+		"rollup": "^4.28.1",
+		"tslib": "^2.8.1",
+		"tsx": "^4.7.1",
+		"typescript": "^5.7.2"
+	}
+}
