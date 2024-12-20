@@ -4,8 +4,8 @@
 	"scripts": {
 		"dev:server": "tsx watch server/index.ts",
 		"dev:client": ",",
-		"watch:client": "rollup -c -w",
-		"build:client": "rollup -c"
+		"watch:client": "rollup -c -w --configPlugin typescript",
+		"build:client": "rollup -c --configPlugin typescript"
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.13.7",

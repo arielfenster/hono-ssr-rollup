@@ -4,6 +4,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import typescript from '@rollup/plugin-typescript';
 import fs from 'fs';
+import { STATIC_JS_PATH } from './constants';
 
 const PAGES = fs.readdirSync('client/roots').map((file) => file.replace('.tsx', ''));
 
@@ -12,14 +13,13 @@ const PAGES = fs.readdirSync('client/roots').map((file) => file.replace('.tsx', 
  */
 const configs = PAGES.map((page) => ({
 	watch: {
-		clearScreen: false,
 		chokidar: {
 			cwd: 'client/**',
 		},
 	},
 	input: `client/roots/${page}.tsx`,
 	output: {
-		file: `static/js/${page}.js`,
+		file: `${STATIC_JS_PATH}/${page}.js`,
 		format: 'iife',
 		sourcemap: true,
 		name: page,

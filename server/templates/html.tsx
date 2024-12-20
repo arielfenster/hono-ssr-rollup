@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import { STATIC_JS_PATH } from '../constants';
+import { STATIC_JS_PATH } from '../../constants';
 
 type Props = PropsWithChildren<{
 	title: string;
@@ -24,7 +24,7 @@ export function Html({ title, pageScript, children }: Props) {
 			</head>
 			<body>
 				<div id='app'>{children}</div>
-				<script src={`${STATIC_JS_PATH}${pageScript}`}></script>
+				<script src={`/${STATIC_JS_PATH}${pageScript}`}></script>
 			</body>
 		</html>
 	);

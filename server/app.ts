@@ -3,6 +3,7 @@ import { aboutRouter } from './routes/about';
 import { homeRouter } from './routes/home';
 import { searchRouter } from './routes/search';
 import { serveStatic } from '@hono/node-server/serve-static';
+import { STATIC_DIR } from '../constants';
 
 const app = new Hono();
 
@@ -11,7 +12,7 @@ const routes = app
 	.route('/about', aboutRouter)
 	.route('/search', searchRouter)
 	.use(
-		'/static/*',
+		`/${STATIC_DIR}/*`,
 		serveStatic(),
 		// serveStatic({
 		// 	onFound(path, c) {

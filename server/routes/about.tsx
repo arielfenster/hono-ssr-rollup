@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import { renderToString } from 'react-dom/server';
 import { AboutPage } from '../../client/pages/about';
-import { Html } from '../templates/html-template';
+import { Html } from '../templates/html';
 
 const aboutRouter = new Hono().get('/', (c) => {
 	const html = renderToString(
