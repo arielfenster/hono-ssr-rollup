@@ -13,15 +13,12 @@ const routes = app
 	.route('/search', searchRouter)
 	.use(
 		`/${STATIC_DIR}/*`,
+		// async (c, next) => {
+		// 	console.log(c.req.path);
+		// 	c.header('Cache-Control', 'public, max-age=10');
+		// 	await next();
+		// },
 		serveStatic(),
-		// serveStatic({
-		// 	onFound(path, c) {
-		// 		console.log(`Serving ${path} to ${c.req.path}`);
-		// 	},
-		// 	onNotFound(path, c) {
-		// 		console.log(`${path} is not found, you accessed ${c.req.path}`);
-		// 	},
-		// }),
 	);
 
 export { app };

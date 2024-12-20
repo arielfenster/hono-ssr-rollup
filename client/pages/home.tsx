@@ -4,7 +4,7 @@ export function HomePage() {
 	return (
 		<>
 			<h1>Home Page</h1>
-			<span>meow3</span>
+			<span className='bg-red-300'>meow3</span>
 			<LayoutHome />
 		</>
 	);

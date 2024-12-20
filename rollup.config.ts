@@ -2,16 +2,19 @@ import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
+import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import fs from 'fs';
-import { STATIC_JS_PATH } from './constants';
+import type { RollupOptions } from 'rollup';
+import { STATIC_JS_PATH, STATIC_CSS_PATH } from './constants';
+import postcss from 'rollup-plugin-postcss';
+import tailwindcss from 'tailwindcss';
+
+import tailwindConfig from './tailwind.config';
 
 const PAGES = fs.readdirSync('client/roots').map((file) => file.replace('.tsx', ''));
 
-/**
- * @type {import('rollup').RollupOptions[]}
- */
-const configs = PAGES.map((page) => ({
+const configs: RollupOptions[] = PAGES.map((page) => ({
 	watch: {
 		chokidar: {
 			cwd: 'client/**',
@@ -26,6 +29,7 @@ const configs = PAGES.map((page) => ({
 		globals: {
 			react: 'React',
 			'react-dom': 'ReactDOM',
+			'react-dom/client': 'ReactDOM',
 		},
 	},
 	plugins: [
@@ -39,8 +43,25 @@ const configs = PAGES.map((page) => ({
 		commonjs(),
 		babel({ babelHelpers: 'bundled', presets: ['@babel/preset-react'] }),
 		typescript(),
+		terser(),
 	],
-	external: ['react', 'react-dom'],
+	external: ['react', 'react-dom', 'react-dom/client', /\.css$/],
 }));
+
+configs.push({
+	input: 'client/index.css',
+	output: {
+		file: `${STATIC_CSS_PATH}/index.css`,
+		format: 'es',
+	},
+	plugins: [
+		postcss({
+			extensions: ['.css'],
+			plugins: [tailwindcss(tailwindConfig)],
+			extract: true,
+			minimize: true,
+		}),
+	],
+});
 
 export default configs;

@@ -6,9 +6,9 @@ export function Button({ children, onClick, ...props }: Props) {
 	return (
 		<button
 			type='button'
-			style={{ fontSize: '24px', borderRadius: '12px', padding: '8px' }}
 			onClick={onClick}
-			{...props}
+			className='text-xl rounded-lg p-2 border-2 border-black'
+			// {...props}
 		>
 			{children}
 		</button>

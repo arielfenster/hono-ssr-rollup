@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import { STATIC_JS_PATH } from '../../constants';
+import { STATIC_CSS_PATH, STATIC_JS_PATH } from '../../constants';
 
 type Props = PropsWithChildren<{
 	title: string;
@@ -7,12 +7,9 @@ type Props = PropsWithChildren<{
 }>;
 
 export function Html({ title, pageScript, children }: Props) {
-	return (
-		<html lang='en'>
-			<head>
-				<meta charSet='UTF-8' />
-				<meta name='viewport' content='width=device-width, initial-scale=1.0' />
-				<title>{title}</title>
+	function getReactSrc() {
+		return (
+			<>
 				<script
 					crossOrigin=''
 					src='https://unpkg.com/react@18.2.0/umd/react.production.min.js'
@@ -21,10 +18,26 @@ export function Html({ title, pageScript, children }: Props) {
 					crossOrigin=''
 					src='https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js'
 				></script>
+			</>
+		);
+	}
+
+	function getStylesLink() {
+		return <link href={`/${STATIC_CSS_PATH}/index.css`} rel='stylesheet' />;
+	}
+
+	return (
+		<html lang='en'>
+			<head>
+				<meta charSet='UTF-8' />
+				<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+				{getReactSrc()}
+				{getStylesLink()}
+				<title>{title}</title>
 			</head>
 			<body>
 				<div id='app'>{children}</div>
-				<script src={`/${STATIC_JS_PATH}${pageScript}`}></script>
+				<script src={`/${STATIC_JS_PATH}/${pageScript}`}></script>
 			</body>
 		</html>
 	);
