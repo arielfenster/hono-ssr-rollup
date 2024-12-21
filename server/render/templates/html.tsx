@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import { STATIC_CSS_PATH, STATIC_JS_PATH } from '../../constants';
+import { STATIC_CSS_FILE_PATH } from '../../../constants';
 
 type Props = PropsWithChildren<{
 	title: string;
@@ -23,7 +23,7 @@ export function Html({ title, pageScript, children }: Props) {
 	}
 
 	function getStylesLink() {
-		return <link href={`/${STATIC_CSS_PATH}/index.css`} rel='stylesheet' />;
+		return <link href={STATIC_CSS_FILE_PATH} rel='stylesheet' />;
 	}
 
 	return (
@@ -37,7 +37,7 @@ export function Html({ title, pageScript, children }: Props) {
 			</head>
 			<body>
 				<div id='app'>{children}</div>
-				<script src={`/${STATIC_JS_PATH}/${pageScript}`}></script>
+				<script src={pageScript}></script>
 			</body>
 		</html>
 	);

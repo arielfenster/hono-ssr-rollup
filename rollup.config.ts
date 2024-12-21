@@ -4,15 +4,11 @@ import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
-import fs from 'fs';
 import type { RollupOptions } from 'rollup';
-import { STATIC_JS_PATH, STATIC_CSS_PATH } from './constants';
 import postcss from 'rollup-plugin-postcss';
 import tailwindcss from 'tailwindcss';
-
+import { PAGES, STATIC_CSS_FILE_PATH, STATIC_JS_PATH } from './constants';
 import tailwindConfig from './tailwind.config';
-
-const PAGES = fs.readdirSync('client/roots').map((file) => file.replace('.tsx', ''));
 
 const configs: RollupOptions[] = PAGES.map((page) => ({
 	watch: {
@@ -51,7 +47,7 @@ const configs: RollupOptions[] = PAGES.map((page) => ({
 configs.push({
 	input: 'client/index.css',
 	output: {
-		file: `${STATIC_CSS_PATH}/index.css`,
+		file: STATIC_CSS_FILE_PATH,
 		format: 'es',
 	},
 	plugins: [
