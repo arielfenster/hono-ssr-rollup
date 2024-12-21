@@ -1,14 +1,13 @@
 import { Hono } from 'hono';
-import { renderToString } from 'react-dom/server';
 import { HomePage } from '../../client/pages/home';
-import { Html } from '../templates/html';
+import { renderServerPage } from '../render';
+import { getPageScript } from '../render/utils';
 
 const homeRouter = new Hono().get('/', (c) => {
-	const html = renderToString(
-		<Html title='Home Page' pageScript='home.js'>
-			<HomePage />
-		</Html>,
-	);
+	const html = renderServerPage(<HomePage />, {
+		title: 'Home Page',
+		pageScript: getPageScript('home'),
+	});
 	return c.html(html);
 });
 
