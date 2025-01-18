@@ -22,7 +22,7 @@ export function HomePage() {
 					</div>
 					<div className='md:w-1/2'>
 						<img
-							src={getImagePath('homepage-image.webp')}
+							src={getImagePath('homepage.webp')}
 							alt='Search your favorite books using BookFinder!'
 							className='rounded-lg shadow-lg'
 							height={400}
