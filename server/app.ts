@@ -3,7 +3,7 @@ import { aboutRouter } from './routes/about';
 import { homeRouter } from './routes/home';
 import { searchRouter } from './routes/search';
 import { serveStatic } from '@hono/node-server/serve-static';
-import { STATIC_DIR } from '../constants';
+import { STATIC_DIR } from '../shared/constants';
 
 const app = new Hono();
 

@@ -8,7 +8,7 @@ import url from '@rollup/plugin-url';
 import type { RollupOptions } from 'rollup';
 import postcss from 'rollup-plugin-postcss';
 import tailwindcss from 'tailwindcss';
-import { PAGES, STATIC_CSS_FILE_PATH, STATIC_JS_PATH } from './constants';
+import { PAGES, STATIC_CSS_FILE_PATH, STATIC_JS_PATH } from './shared/constants';
 import tailwindConfig from './tailwind.config';
 
 const configs: RollupOptions[] = PAGES.map((page) => ({

@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import { STATIC_CSS_FILE_PATH } from '../../../constants';
+import { STATIC_CSS_FILE_PATH } from '../../../shared/constants';
 
 type Props = PropsWithChildren<{
 	title: string;

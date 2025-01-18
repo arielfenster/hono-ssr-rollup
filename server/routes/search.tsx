@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import { SearchPage } from '../../client/pages/search';
 import { renderServerPage } from '../render';
-import { getPageScript } from '../render/utils';
+import { getPageScript } from '../../shared/utils';
 
 const searchRouter = new Hono().get('/', (c) => {
 	const html = renderServerPage(<SearchPage />, {

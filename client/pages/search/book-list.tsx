@@ -1,4 +1,5 @@
 import type { Book } from './types';
+import { getImagePath } from '../../../shared/utils';
 
 interface BookListProps {
 	books: Book[];
@@ -16,7 +17,7 @@ export function BookList({ books }: BookListProps) {
 			{books.map((book) => (
 				<div key={book.id} className='bg-white rounded-lg shadow-md overflow-hidden'>
 					<img
-						src={book.coverImage || '/static/images/bookshelf.svg'}
+						src={book.coverImage || getImagePath('bookshelf.svg')}
 						alt={book.title}
 						className='w-full h-48 object-cover'
 					/>

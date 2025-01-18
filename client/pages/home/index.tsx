@@ -1,4 +1,5 @@
 import { Navbar } from '../../components/navbar';
+import { getImagePath } from '../../../shared/utils';
 
 export function HomePage() {
 	return (
@@ -21,7 +22,7 @@ export function HomePage() {
 					</div>
 					<div className='md:w-1/2'>
 						<img
-							src='/static/images/homepage-image.webp'
+							src={getImagePath('homepage-image.webp')}
 							alt='Search your favorite books using BookFinder!'
 							className='rounded-lg shadow-lg'
 							height={400}

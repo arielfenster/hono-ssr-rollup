@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import { AboutPage } from '../../client/pages/about';
 import { renderServerPage } from '../render';
-import { getPageScript } from '../render/utils';
+import { getPageScript } from '../../shared/utils';
 
 const aboutRouter = new Hono().get('/', (c) => {
 	const html = renderServerPage(<AboutPage />, {
