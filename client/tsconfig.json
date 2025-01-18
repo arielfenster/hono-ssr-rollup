@@ -8,5 +8,5 @@
 		"jsx": "react-jsx",
 		"strict": true
 	},
-	"include": ["pages/**/*"]
+	"include": ["pages/**/*", "index.d.ts"]
 }

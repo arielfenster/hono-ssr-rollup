@@ -21,6 +21,7 @@
 		"@rollup/plugin-replace": "^6.0.2",
 		"@rollup/plugin-terser": "^0.4.4",
 		"@rollup/plugin-typescript": "^12.1.1",
+		"@rollup/plugin-url": "^8.0.2",
 		"@types/node": "^20.17.10",
 		"@types/react": "^19.0.1",
 		"@types/react-dom": "^19.0.2",

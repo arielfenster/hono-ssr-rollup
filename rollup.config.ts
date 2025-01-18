@@ -4,6 +4,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
+import url from '@rollup/plugin-url';
 import type { RollupOptions } from 'rollup';
 import postcss from 'rollup-plugin-postcss';
 import tailwindcss from 'tailwindcss';
@@ -37,6 +38,7 @@ const configs: RollupOptions[] = PAGES.map((page) => ({
 		}),
 		resolve(),
 		commonjs(),
+		url(),
 		babel({ babelHelpers: 'bundled', presets: ['@babel/preset-react'] }),
 		typescript(),
 		terser(),
