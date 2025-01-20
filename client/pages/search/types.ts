@@ -2,7 +2,6 @@ export interface Book {
 	id: string;
 	title: string;
 	author: string;
-	description: string;
-	genre: string;
-	coverImage: string;
+	publishYear: number;
+	coverImageUrl: string;
 }

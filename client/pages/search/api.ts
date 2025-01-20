@@ -1,41 +1,46 @@
 import type { Book } from './types';
 
-type ApiResponse = {};
+const API_URL = 'https://openlibrary.org/search.json';
 
-// This is a mock API function. In a real application, you would replace this
-// with actual API calls to your third-party book search service.
-export async function searchBooks(query: string, genre: string): Promise<Book[]> {
-	// Simulate API call delay
-	await new Promise((resolve) => setTimeout(resolve, 1000));
+const COVER_ID_PLACEHOLDER = 'COVER_ID';
+const COVER_IMAGE_API_URL = `https://covers.openlibrary.org/b/id/${COVER_ID_PLACEHOLDER}-L.jpg`;
 
-	return [];
+type BookData = {
+	key: string;
+	title: string;
+	author_name: string;
+	cover_i: number;
+	publish_year: number[];
+};
+type ApiResponse = { docs: BookData[] };
 
-	// Mock data
-	// const mockBooks: Book[] = [
-	// 	{
-	// 		id: '1',
-	// 		title: 'The Great Gatsby',
-	// 		author: 'F. Scott Fitzgerald',
-	// 		description: 'A story of decadence and excess in Jazz Age America.',
-	// 		genre: 'fiction',
-	// 		coverImage: '/placeholder.svg?height=200&width=150',
-	// 	},
-	// 	{
-	// 		id: '2',
-	// 		title: 'To Kill a Mockingbird',
-	// 		author: 'Harper Lee',
-	// 		description: 'A novel about racial injustice and the loss of innocence.',
-	// 		genre: 'fiction',
-	// 		coverImage: '/placeholder.svg?height=200&width=150',
-	// 	},
-	// 	// Add more mock books here
-	// ];
+export async function searchBooks(title: string): Promise<Book[]> {
+	const searchParams = new URLSearchParams({ title: title.toLowerCase(), limit: '5' });
 
-	// // Filter books based on query and genre
-	// return mockBooks.filter(
-	// 	(book) =>
-	// 		(book.title.toLowerCase().includes(query.toLowerCase()) ||
-	// 			book.author.toLowerCase().includes(query.toLowerCase())) &&
-	// 		(genre === '' || book.genre === genre),
-	// );
+	try {
+		const response = await fetch(`${API_URL}?${searchParams.toString()}`);
+		if (!response.ok) {
+			throw new Error('Failed to search books');
+		}
+		const data = (await response.json()) as ApiResponse;
+
+		return data.docs.map(mapBookDataToBook);
+	} catch (error) {
+		console.error(error);
+		return [];
+	}
+}
+
+function mapBookDataToBook(data: BookData): Book {
+	const coverImageUrl = data.cover_i
+		? COVER_IMAGE_API_URL.replace(COVER_ID_PLACEHOLDER, data.cover_i.toString())
+		: '';
+
+	return {
+		id: data.key,
+		title: data.title,
+		author: data.author_name,
+		publishYear: data.publish_year[0],
+		coverImageUrl,
+	};
 }

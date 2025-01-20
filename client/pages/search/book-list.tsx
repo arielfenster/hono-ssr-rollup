@@ -17,15 +17,17 @@ export function BookList({ books }: BookListProps) {
 			{books.map((book) => (
 				<div key={book.id} className='bg-white rounded-lg shadow-md overflow-hidden'>
 					<img
-						src={book.coverImage || getImagePath('bookshelf.svg')}
+						src={book.coverImageUrl}
 						alt={book.title}
 						className='w-full h-48 object-cover'
+						onError={(e) => {
+							console.log('failed to get image: ', e);
+						}}
 					/>
 					<div className='p-4'>
 						<h2 className='text-xl font-semibold text-gray-800 mb-2'>{book.title}</h2>
 						<p className='text-gray-600 mb-2'>by {book.author}</p>
-						<p className='text-sm text-gray-500 mb-2'>{book.genre}</p>
-						<p className='text-gray-700 text-sm line-clamp-3'>{book.description}</p>
+						<p className='text-sm text-gray-500 mb-2'>{book.publishYear}</p>
 					</div>
 				</div>
 			))}
