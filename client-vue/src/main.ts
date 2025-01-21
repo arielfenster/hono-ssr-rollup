@@ -1,6 +1,9 @@
-import './assets/main.css'
+import { createSSRApp } from 'vue';
+import { renderToString } from 'vue/server-renderer';
 
-import { createApp } from 'vue'
-import App from './App.vue'
+const app = createSSRApp({
+	data: () => ({ count: 1 }),
+	template: `<div @click="count++">{{ count }}</div>`,
+});
 
-createApp(App).mount('#app')
+renderToString(app).then(console.log);
