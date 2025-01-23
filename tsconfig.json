@@ -1,4 +1,10 @@
 {
+	"include": [
+		"shims-vue.d.ts",
+		"client-vue/**/*.ts",
+		"client-vue/**/*.vue",
+		"server/**/*.vue"
+	],
 	"compilerOptions": {
 		"target": "ESNext",
 		"module": "ESNext",
@@ -7,7 +13,7 @@
 		"verbatimModuleSyntax": true,
 		"skipLibCheck": true,
 		"types": ["node"],
-		"jsx": "react-jsx",
-		"jsxImportSource": "react"
+		"jsx": "preserve",
+		"jsxImportSource": "vue"
 	}
 }

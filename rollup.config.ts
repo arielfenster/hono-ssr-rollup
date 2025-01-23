@@ -1,45 +1,48 @@
-import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import url from '@rollup/plugin-url';
+import viteVue from '@vitejs/plugin-vue';
 import type { RollupOptions } from 'rollup';
 import postcss from 'rollup-plugin-postcss';
 import tailwindcss from 'tailwindcss';
-import { PAGES, STATIC_CSS_FILE_PATH, STATIC_JS_PATH } from './shared/constants';
+import {
+	PAGES,
+	STATIC_CSS_FILE_PATH,
+	STATIC_JS_PATH,
+} from './shared/constants';
 import tailwindConfig from './tailwind.config';
 
 const configs: RollupOptions[] = PAGES.map((page) => ({
 	watch: {
 		chokidar: {
-			cwd: 'client/**',
+			cwd: 'client-vue/**',
 		},
 	},
-	input: `client/roots/${page}.tsx`,
+	input: `client-vue/roots/${page}.ts`,
 	output: {
-		file: `${STATIC_JS_PATH}/${page}.js`,
+		file: `${STATIC_JS_PATH}/${page}_vue.js`,
 		format: 'iife',
 		sourcemap: true,
-		name: page,
 		globals: {
-			react: 'React',
-			'react-dom': 'ReactDOM',
-			'react-dom/client': 'ReactDOM',
+			vue: 'Vue',
 		},
 	},
 	plugins: [
 		replace({
 			preventAssignment: true,
 			values: {
-				'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
+				'process.env.NODE_ENV': JSON.stringify(
+					process.env.NODE_ENV || 'production',
+				),
 			},
 		}),
-		resolve(),
+		resolve({ extensions: ['.js', '.ts', '.vue'] }),
 		commonjs(),
 		url(),
-		babel({ babelHelpers: 'bundled', presets: ['@babel/preset-react'] }),
+		viteVue(),
 		typescript(),
 		terser(),
 	],

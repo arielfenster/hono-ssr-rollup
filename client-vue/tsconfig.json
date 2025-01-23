@@ -1,8 +1,9 @@
 {
-	"include": ["env.d.ts", "shims-vue.d.ts", "src/**/*", "src/**/*.vue"],
+	"include": ["shims-vue.d.ts", "src/**/*.ts", "src/**/*.vue"],
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
 		"jsx": "preserve",
-		"jsxImportSource": "vue"
+		"jsxImportSource": "vue",
+		"lib": ["ES2016", "DOM"]
 	}
 }
