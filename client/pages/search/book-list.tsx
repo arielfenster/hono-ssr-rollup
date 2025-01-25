@@ -21,7 +21,8 @@ export function BookList({ books }: BookListProps) {
 						alt={book.title}
 						className='w-full h-48 object-cover'
 						onError={(e) => {
-							console.log('failed to get image: ', e);
+							e.currentTarget.onerror = null;
+							e.currentTarget.src = getImagePath('bookshelf.svg');
 						}}
 					/>
 					<div className='p-4'>
