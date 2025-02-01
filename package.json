@@ -2,7 +2,7 @@
 	"name": "books-recommendation",
 	"type": "module",
 	"scripts": {
-		"dev:server": "tsx watch server/index.ts",
+		"dev:server": "bun run --watch server/index.ts",
 		"dev:client": ",",
 		"watch:client": "NODE_ENV=development rollup -c -w --configPlugin typescript",
 		"build:client": "NODE_ENV=production rollup -c --configPlugin typescript"
@@ -22,6 +22,7 @@
 		"@rollup/plugin-terser": "^0.4.4",
 		"@rollup/plugin-typescript": "^12.1.1",
 		"@rollup/plugin-url": "^8.0.2",
+		"@types/bun": "latest",
 		"@types/node": "^20.17.10",
 		"@types/react": "^19.0.1",
 		"@types/react-dom": "^19.0.2",
