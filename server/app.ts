@@ -10,16 +10,17 @@ const app = new Hono();
 const routes = app
 	.route('/', homeRouter)
 	.route('/about', aboutRouter)
-	.route('/search', searchRouter)
-	.use(
-		`/${STATIC_DIR}/*`,
-		// async (c, next) => {
-		// 	console.log(c.req.path);
-		// 	c.header('Cache-Control', 'public, max-age=10');
-		// 	await next();
-		// },
-		serveStatic(),
-	);
+	.route('/search', searchRouter);
+
+app.use(
+	`/${STATIC_DIR}/*`,
+	// async (c, next) => {
+	// 	console.log(c.req.path);
+	// 	c.header('Cache-Control', 'public, max-age=10');
+	// 	await next();
+	// },
+	serveStatic(),
+);
 
 export { app };
 export type AppType = typeof routes;

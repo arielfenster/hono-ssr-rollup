@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRpcQueryClient } from '../../providers/rpc-query-provider';
 
 interface SearchFormProps {
 	onSearch: (title: string) => void;
@@ -6,6 +7,16 @@ interface SearchFormProps {
 
 export function SearchForm({ onSearch }: SearchFormProps) {
 	const [title, setTitle] = useState('');
+	const client = useRpcQueryClient();
+
+	useEffect(() => {
+		console.log('search url: ', client.search.$url());
+
+		client.search.message.$get().then((data) => {
+			console.log('search message get');
+			data.json().then(console.log);
+		});
+	}, []);
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
