@@ -23,6 +23,7 @@ const configs: RollupOptions[] = PAGES.map((page) => ({
 		format: 'iife',
 		sourcemap: true,
 		name: page,
+		extend: true,
 		globals: {
 			react: 'React',
 			'react-dom': 'ReactDOM',

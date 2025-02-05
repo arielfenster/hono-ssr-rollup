@@ -4,13 +4,15 @@ import { homeRouter } from './routes/home';
 import { searchRouter } from './routes/search';
 import { serveStatic } from '@hono/node-server/serve-static';
 import { STATIC_DIR } from '../shared/constants';
+import { authRouter } from './routes/auth';
 
 const app = new Hono();
 
 const routes = app
 	.route('/', homeRouter)
 	.route('/about', aboutRouter)
-	.route('/search', searchRouter);
+	.route('/search', searchRouter)
+	.route('/auth', authRouter);
 
 app.use(
 	`/${STATIC_DIR}/*`,
