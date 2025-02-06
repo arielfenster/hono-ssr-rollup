@@ -12,7 +12,7 @@ export function LoginPage() {
 					<LoginForm />
 					<p className='mt-4 text-center'>
 						Don't have an account?{' '}
-						<a href='/signup' className='text-blue-500 hover:text-blue-700'>
+						<a href='/auth/signup' className='text-blue-500 hover:text-blue-700'>
 							Sign up
 						</a>
 					</p>

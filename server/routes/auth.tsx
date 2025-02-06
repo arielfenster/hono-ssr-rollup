@@ -5,6 +5,7 @@ import { renderServerPage } from '../render';
 import { LoginPage } from '../../client/pages/auth/login';
 import { getPageScript } from '../../shared/utils';
 import { setCookie } from 'hono/cookie';
+import { SignupPage } from '../../client/pages/signup/very/nested/folder';
 
 const authRouter = new Hono()
 	.get('/login', (c) => {
@@ -16,9 +17,9 @@ const authRouter = new Hono()
 		return c.html(html);
 	})
 	.get('/signup', (c) => {
-		const html = renderServerPage(<LoginPage />, {
+		const html = renderServerPage(<SignupPage />, {
 			title: 'Sign Up',
-			pageScript: getPageScript('auth/login'),
+			pageScript: getPageScript('signup/very/nested/folder'),
 		});
 
 		return c.html(html);
