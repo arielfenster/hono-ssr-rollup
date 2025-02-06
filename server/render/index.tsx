@@ -4,10 +4,14 @@ import { Html } from './templates/html';
 
 export function renderServerPage(
 	component: ReactNode,
-	{ title, pageScript }: { title: string; pageScript: string },
+	{
+		title,
+		pageScript,
+		clientData,
+	}: { title: string; pageScript: string; clientData?: Record<string, any> },
 ) {
 	return renderToString(
-		<Html title={title} pageScript={pageScript}>
+		<Html title={title} pageScript={pageScript} clientData={clientData}>
 			{component}
 		</Html>,
 	);

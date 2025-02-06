@@ -1,12 +1,13 @@
 import type { PropsWithChildren } from 'react';
-import { STATIC_CSS_FILE_PATH } from '../../../shared/constants';
+import { CLIENT_DATA_NAME, STATIC_CSS_FILE_PATH } from '../../../shared/constants';
 
 type Props = PropsWithChildren<{
 	title: string;
 	pageScript: string;
+	clientData?: Record<string, any>;
 }>;
 
-export function Html({ title, pageScript, children }: Props) {
+export function Html({ title, pageScript, clientData, children }: Props) {
 	function getReactSrc() {
 		return (
 			<>
@@ -26,6 +27,18 @@ export function Html({ title, pageScript, children }: Props) {
 		return <link href={STATIC_CSS_FILE_PATH} rel='stylesheet' />;
 	}
 
+	function injectClientData() {
+		if (!clientData) return null;
+
+		return (
+			<script
+				dangerouslySetInnerHTML={{
+					__html: `var ${CLIENT_DATA_NAME} = ${JSON.stringify(clientData)}`,
+				}}
+			/>
+		);
+	}
+
 	return (
 		<html lang='en'>
 			<head>
@@ -33,6 +46,7 @@ export function Html({ title, pageScript, children }: Props) {
 				<meta name='viewport' content='width=device-width, initial-scale=1.0' />
 				{getReactSrc()}
 				{getStylesLink()}
+				{injectClientData()}
 				<title>{title}</title>
 			</head>
 			<body>
