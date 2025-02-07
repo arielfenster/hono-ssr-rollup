@@ -24,7 +24,7 @@ export function Html({ title, pageScript, clientData, children }: Props) {
 	}
 
 	function getStylesLink() {
-		return <link href={STATIC_CSS_FILE_PATH} rel='stylesheet' />;
+		return <link href={`/${STATIC_CSS_FILE_PATH}`} rel='stylesheet' />;
 	}
 
 	function injectClientData() {
@@ -46,11 +46,11 @@ export function Html({ title, pageScript, clientData, children }: Props) {
 				<meta name='viewport' content='width=device-width, initial-scale=1.0' />
 				{getReactSrc()}
 				{getStylesLink()}
-				{injectClientData()}
 				<title>{title}</title>
 			</head>
 			<body>
 				<div id='app'>{children}</div>
+				{injectClientData()}
 				<script src={pageScript}></script>
 			</body>
 		</html>
