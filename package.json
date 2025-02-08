@@ -2,11 +2,10 @@
 	"name": "books-recommendation",
 	"type": "module",
 	"scripts": {
-		"dev:server": "tsx watch server/index.ts",
+		"dev:server": "bun run --watch server/index.ts",
 		"dev:client": "NODE_ENV=development rollup -c -w --configPlugin typescript",
-		"build:server": "NODE_ENV=production rollup -c rollup.config.server.ts --configPlugin typescript",
 		"build:client": "NODE_ENV=production rollup -c --configPlugin typescript",
-		"start": "NODE_ENV=production node dist/server/index.js"
+		"start": "bun run server/index.ts"
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.13.7",
