@@ -10,7 +10,7 @@ type BookData = {
 	title: string;
 	author_name: string;
 	cover_i: number;
-	publish_year: number[];
+	first_publish_year: number;
 };
 type ApiResponse = { docs: BookData[] };
 
@@ -40,7 +40,7 @@ function mapBookDataToBook(data: BookData): Book {
 		id: data.key,
 		title: data.title,
 		author: data.author_name,
-		publishYear: data.publish_year[0],
+		publishYear: data.first_publish_year,
 		coverImageUrl,
 	};
 }
