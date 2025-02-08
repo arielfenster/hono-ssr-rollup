@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 import { aboutRouter } from './routes/about';
 import { homeRouter } from './routes/home';
 import { searchRouter } from './routes/search';
-import { serveStatic } from 'hono/bun';
+import { serveStatic } from '@hono/node-server/serve-static';
 import { STATIC_DIR } from '../shared/constants';
 import { authRouter } from './routes/auth';
 import { dynamicRouter } from './routes/dynamic';
@@ -23,7 +23,7 @@ app.use(
 	// 	c.header('Cache-Control', 'public, max-age=10');
 	// 	await next();
 	// },
-	serveStatic({ root: './' }),
+	serveStatic(),
 );
 
 export { app };
