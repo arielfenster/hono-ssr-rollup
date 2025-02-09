@@ -16,6 +16,9 @@ export function Navbar() {
 					<AppLink href='/about' className='text-white mr-4 hover:text-blue-200'>
 						About
 					</AppLink>
+					<AppLink href='/full-data' className='text-white mr-4 hover:text-blue-200'>
+						Full data
+					</AppLink>
 				</div>
 				<div className='ml-auto'>
 					<AppLink href='/auth/login' className='text-white hover:text-blue-200'>

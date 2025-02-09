@@ -6,6 +6,7 @@ import { serveStatic } from '@hono/node-server/serve-static';
 import { STATIC_DIR } from '../shared/constants';
 import { authRouter } from './routes/auth';
 import { dynamicRouter } from './routes/dynamic';
+import { fullDataRouter } from './routes/full-data';
 
 const app = new Hono();
 
@@ -14,7 +15,8 @@ const routes = app
 	.route('/about', aboutRouter)
 	.route('/search', searchRouter)
 	.route('/auth', authRouter)
-	.route('/dynamic', dynamicRouter);
+	.route('/dynamic', dynamicRouter)
+	.route('/full-data', fullDataRouter);
 
 app.use(
 	`/${STATIC_DIR}/*`,
